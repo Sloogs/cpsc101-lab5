@@ -93,7 +93,6 @@ public class Main
 				}
 			}
 
-			numConstantsIsCorrect("viininviljelyalue", 6);
 			reader.close();
 			writer.flush();
 			writer.close();
