@@ -29,7 +29,7 @@ public class Main
 			String readFileString = "";
 			String writeFileString = "";
 			Scanner reader = new Scanner(System.in);
-			PrintWriter writer = new PrintWriter(System.out, false, StandardCharsets.UTF_8);
+			PrintWriter writer = new PrintWriter(System.out);
 			ArrayList<String> wordList = new ArrayList<String>();
 			ArrayList<String> validWords = new ArrayList<String>();
 
@@ -54,42 +54,53 @@ public class Main
 			}
 			else
 			{
-				// TO DO: write usage
-				System.out.println("Usage: ");
+				showUsage();
 			}
 
 			if (readFileString != "")
 			{
 				File readFile = new File(readFileString);
 				reader = new Scanner(readFile, "UTF-8");
+			} else {
+				System.out.println("If no input was provided you may provide input below. "
+						+ "Press enter when you are done.");
 			}
 
-			if (writeFileString != "")
+			while (reader.hasNextLine())
 			{
-				File writeFile = new File(writeFileString);
-				writer = new PrintWriter(writeFile, "UTF-8");
-			}
-
-			while (reader.hasNext())
-			{
-				String word = reader.next();
-				wordList.add(word);
-			}
-
-			for (String word: wordList)
-			{
-				if (numConstantsIsCorrect(word, numConsonantsRequired))
-				{
-					validWords.add(word);
+				String word = reader.nextLine();
+				if (!word.equals("")) {
+					wordList.add(word);
+				} else {
+					break;
 				}
 			}
 
-			for (String word: validWords){
+			if (wordList.size() == 0)
+			{
+				showUsage();
+			} else {
 				if (writeFileString != "")
 				{
-					writer.println(word);
-				} else {
-					System.out.println(word);
+					File writeFile = new File(writeFileString);
+					writer = new PrintWriter(writeFile, "UTF-8");
+				}
+
+				for (String word: wordList)
+				{
+					if (numConstantsIsCorrect(word, numConsonantsRequired))
+					{
+						validWords.add(word);
+					}
+				}
+
+				for (String word: validWords){
+					if (writeFileString != "")
+					{
+						writer.println(word);
+					} else {
+						System.out.println(word);
+					}
 				}
 			}
 
@@ -114,7 +125,7 @@ public class Main
 	public static boolean numConstantsIsCorrect(String word, int numberRequired)
 	{
 		boolean result = false;
-		ArrayList<Character> letters = new ArrayList<Character>();
+		ArrayList<Character> consonants = new ArrayList<Character>();
 		int pairCount = 0;
 		int invalidCount = 0;
 
@@ -131,23 +142,23 @@ public class Main
 			char letter = Character.toLowerCase(word.charAt(i));
 			if (!(isVowel(letter)))
 			{
-				letters.add(letter);
+				consonants.add(letter);
 			}
 		}
 
 		// Compares pairs of letters in the "letters" ArrayList. Note that
 		// letters were already converted to lower case in previous for loop
 		// so we do not need to convert to lower case here.
-		for (int i = 1; i < letters.size(); i++)
+		for (int i = 1; i < consonants.size(); i++)
 		{
 			// Casting to int gives the byte value of the letter so we can check if the letter
 			// is a greater value than or equal value to the next letter, although likely
 			// will only work with a "basic" (English) alphabet (no accents).
-			if ((int)letters.get(i - 1) >= (int)letters.get(i))
+			if ((int)consonants.get(i - 1) >= (int)consonants.get(i))
 			{
 				pairCount++;
 			}
-			else if ((int)letters.get(i - 1) < (int)letters.get(i))
+			else if ((int)consonants.get(i - 1) < (int)consonants.get(i))
 			{
 				invalidCount++;
 			}
@@ -188,5 +199,16 @@ public class Main
 		String word = Normalizer.normalize(w, Normalizer.Form.NFD);
 		word = word.replaceAll("\\p{M}", "");
 		return word;
+	}
+
+	public static void showUsage()
+	{
+		System.out.println("Usage: java Main [n] [readfile] [writefile], where:");
+		System.out.println("[n] is the number of consecutive non-increasing consonants "
+				+ "(default = 6).");
+		System.out.println("[readfile] is a text file to read input from (otherwise will "
+				+ " take input piped via command line).");
+		System.out.println("[writefile] is a text file to read input from (will output to "
+				+ "System.out by default if no file name is supplied).");
 	}
 }
