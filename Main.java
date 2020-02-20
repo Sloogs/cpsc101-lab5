@@ -29,7 +29,7 @@ public class Main
 			String readFileString = "";
 			String writeFileString = "";
 			Scanner reader = new Scanner(System.in);
-			PrintWriter writer = new PrintWriter(System.out, false, StandardCharsets.UTF_8);
+			PrintWriter writer = new PrintWriter(System.out);
 			ArrayList<String> wordList = new ArrayList<String>();
 			ArrayList<String> validWords = new ArrayList<String>();
 
