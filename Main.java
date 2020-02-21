@@ -1,3 +1,4 @@
+package cpsc101.nickslugocki.lab5;
 /**
 * This file is part of a solution to
 *     CPSC 101 Lab 5 Winter 2020
