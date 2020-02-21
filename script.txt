@@ -1,0 +1,63 @@
+Script started on 2020-02-20 15:41:06-0800
+slugoc0@lab457_9:~/Documents/CPSC101/lab5$ java Main 6 kaikkisanat.txt [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K6 eng-test.txt 
+zyxwvutsrqponm
+qqqqqqq
+lollygagged
+waterlogged
+triple-headed
+slugoc0@lab457_9:~/Documents/CPSC101/lab5$ java Main 6 eng-test.txt [C[C[C[1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [1P [K[C a [1P k a ikkisanat.txt 
+attaseasalkku
+pinnemmalla
+pinnemmalle
+rannemmalla
+rannemmalle
+saappaannuolija
+siirrännäinen
+silkkikukka
+sonnimullikka
+suppilokukka
+synnynnäinen
+tappelukukko
+torpankukka
+uutispäällikkö
+vaatturinliike
+vesilläliikkuja
+vesipalloilija
+viisipenninen
+virkkuukoukku
+slugoc0@lab457_9:~/Documents/CPSC101/lab5$ wc [K[K[Kjava Main 6 kaikkisanat.txt | wc
+     19      19     265
+slugoc0@lab457_9:~/Documents/CPSC101/lab5$ java [K[K[K[K[Kcat english.txt | java B[KMain 6 [K
+If no input was provided you may provide input below. Press enter when you are done.
+autotetraploid
+autotetraploidy
+lallygagged
+lollygagged
+outspanning
+outspinning
+overrunning
+pediococcocci
+pneumococcic
+pneumococcocci
+sea-surrounded
+small-headed
+spiny-legged
+splay-legged
+tetraploidic
+tittupping
+topping-off
+trammelhead
+trammelled
+trapanning
+trepanning
+triple-headed
+tut-tutting
+waterlogged
+water-logged
+water-rolled
+well-alleged
+zwitterionic
+slugoc0@lab457_9:~/Documents/CPSC101/lab5$ exit
+exit
+
+Script done on 2020-02-20 15:44:02-0800
