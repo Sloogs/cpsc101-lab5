@@ -2,7 +2,18 @@
 * This file is part of a solution to
 *     CPSC 101 Lab 5 Winter 2020
 *
-* This program...
+* This program takes a list of words and tries to find word that contain
+* consecutive pairs of consonants in non-increasing order. It then returns the
+* words that meet the criteria. It takes input from either an input file or
+* System.in if no input file is provided, output either to an output file, or
+* System.out if no output file is provided.
+*
+* NOTE TO THE MARKER: I did a couple extra things we haven't covered in the
+* class yet. I wanted to create a program that worked with a variety of
+* languages that use Latin letters so I created a method to strip
+* accent marks in Unicode text using regular expressions. I just
+* wanted to make sure I mention what I did so the marker has some insight into
+* what I was doing any why. 
 *
 * @author Nicholas Slugocki
 * Student Number: 230082267
@@ -118,8 +129,13 @@ public class Main
 	}
 
 	/**
-	*
-	* @param word
+	* This method checks a word for non-increasing consecutive consonants and returns a boolean
+	* value indicating whether the criteria was met.
+	* @param word The word to be checked.
+	* @param numberRequired The minimum number of non-increasing consecutive pairs that are being
+	*                       checked for.
+	* @return A true or false value indicating whether the correct number of non-increasing
+	*         consecutive consonants was met.
 	*/
 	public static boolean numConstantsIsCorrect(String word, int numberRequired)
 	{
@@ -170,16 +186,14 @@ public class Main
 			result = false;
 		}
 
-//		System.out.println("Word: " + word + ", num: " + pairCount
-//				+ ", result: " + result);
-
 		return result;
 	}
 
 	/**
-	* 
-	* @param letter
-	* @return 
+	* Checks to see if the current letter is a vowel. Only checks unaccented vowels, but we can use
+	* the removeAccentMarks method to remove accent marks from words.
+	* @param letter The letter to check.
+	* @return A true or false value indicating whether the letter is a vowel.
 	*/
 	public static boolean isVowel(char letter)
 	{
@@ -193,6 +207,12 @@ public class Main
 		return result;
 	}
 
+	/**
+	* This method takes a word, strips the accent marks, and returns the same word without the
+	* accents.
+	* @param w The word to remove accent marks from.
+	* @return A string containing the word with the accent marks stripped.
+	*/
 	public static String removeAccentMarks(String w)
 	{
 		String word = Normalizer.normalize(w, Normalizer.Form.NFD);
@@ -200,6 +220,10 @@ public class Main
 		return word;
 	}
 
+	/**
+	* Shows a usage message for the program.
+	* @return Nothing
+	*/
 	public static void showUsage()
 	{
 		System.out.println("Usage: java Main [n] [readfile] [writefile], where:");
